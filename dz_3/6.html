@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+<body>
+<!--
+Необязательное задание.
+
+Необходимо вывести горку в консоль (используя цикл for), как показано на
+рисунке, только у вашей горки должно быть 20 рядов, а не 5:
+
+```
+x
+xx
+xxx
+xxxx
+xxxxx
+```
+
+Примечание: в трех косых кавычках ``` показан пример кода для вывода, вам эти
+кавычки выводить не нужно.
+-->
+<script>
+  "use strict";
+
+  // Вспомнив 5 задачу, решил применить здесь.
+  for (let str = ""; str.length < 20; console.log(str += "x")) {}
+  
+  // Вариант с рекурсией.
+  for (let i = 0; i < 20; i++) {
+    console.log(addXToString("", i));
+  }
+
+  function addXToString(str, pos) {
+    if (pos == 0) {
+      return str;
+    }
+    return addXToString(str + "x", pos - 1)
+  }
+
+  // Вариант со вложенным циклом for.
+  for (let i = 0; i < 20; i++) {
+    let str = "";
+    for (let j = 0; j < i; j++) {
+      str = str + "x";
+    }
+    console.log(str);
+  }
+
+</script>
+</body>
+</html>
