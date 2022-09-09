@@ -61,16 +61,17 @@
   };
 
   const navEl = document.querySelector('.nav');
+  const textEl = document.querySelector('.text');
   navEl.addEventListener('click', event => {
     const target = event.target;
-    if (!target.classList.contains('nav-link', 'active')) {
+    console.dir(target);
+    if (!target.classList.contains('nav-link')) {
       return;
     }
     navEl.querySelector('.active').classList.remove('active');
     target.classList.add('active');
 
-    document.querySelector('.text').textContent = 
-      panelText[target.parentElement.dataset.text];
+    textEl.textContent = panelText[target.parentElement.dataset.text];
   });
 
   /*
@@ -79,9 +80,11 @@
   шрифт у текста, никакого резкого увеличения шрифта не должно быть при
   перетаскивании ползунка.
   */
-  document.querySelector('[type="range"]').addEventListener('input', event => {
-    document.querySelector('#inputDiv').style.fontSize = 
-      event.target.value + 'px';
+ const inputDivEl = document.querySelector('#inputDiv');
+ const rangeEl = document.querySelector('[type="range"]');
+ rangeEl.value = Number.parseInt(window.getComputedStyle(inputDivEl).fontSize);
+  rangeEl.addEventListener('input', event => {
+    inputDivEl.style.fontSize = event.target.value + 'px';
   });
   
 </script>
